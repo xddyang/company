@@ -1,14 +1,21 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { useDark, useToggle } from '@vueuse/core'
+import { useDark } from '@vueuse/core'
 import {
   ArrowRight, Brain, Database, Shield, Smartphone,
   MessageSquare, BarChart3, FileText, Activity,
   Menu, X, CheckCircle, Zap, Globe, Code, Sun, Moon
 } from 'lucide-vue-next'
 
-const isDark = useDark()
-const toggleDark = useToggle(isDark)
+const isDark = useDark({
+  selector: 'html',
+  attribute: 'class',
+  valueDark: 'dark',
+  valueLight: 'light'
+})
+const toggleDark = () => {
+  isDark.value = !isDark.value
+}
 
 const navItems = ['首页', '核心优势', '产品服务', '功能特性', '合作方式', '技术架构', '联系我们']
 
@@ -509,9 +516,9 @@ const contactTab = ref('message')
                 <!-- Contact Info -->
                 <div v-else class="space-y-4">
                   <p><strong>公司：</strong> 睿肤云图科技有限公司</p>
-                  <p><strong>地址：</strong> 中国上海市浦东新区张江高科技园区</p>
-                  <p><strong>商务合作：</strong> business@ruifuyuntu.com</p>
-                  <p><strong>技术支持：</strong> support@ruifuyuntu.com</p>
+                  <p><strong>地址：</strong> 中国天津市河北区中山路</p>
+                  <p><strong>商务合作：</strong> 1552614119@qq.com</p>
+                  <p><strong>技术支持：</strong> 1552614119@qq.com</p>
                   <div>
                     <h4 class="font-semibold mb-2">关注我们</h4>
                     <div class="flex space-x-4">
@@ -557,8 +564,8 @@ const contactTab = ref('message')
           </div>
           <div class="w-full md:w-1/3 text-center md:text-right">
             <h4 class="text-lg font-semibold mb-2">联系我们</h4>
-            <p class="text-sm text-muted-foreground">business@ruifuyuntu.com</p>
-            <p class="text-sm text-muted-foreground">上海市浦东新区张江高科技园区</p>
+            <p class="text-sm text-muted-foreground">1552614119@qq.com</p>
+            <p class="text-sm text-muted-foreground">中国天津市河北区中山路</p>
           </div>
         </div>
         <div class="mt-8 pt-8 border-t border-border text-center">
