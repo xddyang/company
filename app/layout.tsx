@@ -6,9 +6,9 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "创源科技有限公司",
-  description: "创新源于此，科技改变未来",
-    generator: 'v0.app'
+  title: "睿肤云图 - 智汇睿肤，数绘云图",
+  description: "专业AI皮肤检测与分析平台，基于国内知名医院皮肤数据和专业医生标注，提供精准的AI皮肤识别服务",
+  generator: 'v0.app'
 }
 
 export default function RootLayout({
