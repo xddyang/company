@@ -113,6 +113,18 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState('首页')
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
 
+  const scrollToSection = (section: string, e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    setActiveSection(section)
+    setMobileNavOpen(false)
+    const el = document.getElementById(section)
+    if (el) {
+      const offset = 64
+      const top = el.getBoundingClientRect().top + window.scrollY - offset
+      window.scrollTo({ top, behavior: 'smooth' })
+    }
+  }
+
   const handleSetActive = (section: string) => {
     setActiveSection(section)
     setMobileNavOpen(false)
@@ -157,7 +169,7 @@ export default function Home() {
                     className={`text-sm font-medium transition-colors hover:text-primary ${
                       activeSection === item ? 'text-primary' : 'text-muted-foreground'
                     }`}
-                    onClick={() => handleSetActive(item)}
+                    onClick={(e) => scrollToSection(item, e)}
                   >
                     {item}
                   </a>
@@ -196,7 +208,7 @@ export default function Home() {
                   className={`block py-2 text-sm font-medium transition-colors hover:text-primary ${
                     activeSection === item ? 'text-primary' : 'text-muted-foreground'
                   }`}
-                  onClick={() => handleSetActive(item)}
+                  onClick={(e) => scrollToSection(item, e)}
                 >
                   {item}
                 </a>
@@ -373,7 +385,7 @@ export default function Home() {
                   <CheckCircle className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="font-semibold text-lg">个性化报告</h3>
-                    <p className="text-muted-foreground text-sm mt-1">生成详细的皮肤分析报告，提供针对性护理建议</p>
+                    <p className="text-muted-foreground text-sm mt-1">生成��细的皮肤分析报告，提供针对性护理建议</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -600,7 +612,13 @@ export default function Home() {
               <ul className="space-y-2">
                 {navItems.map((item) => (
                   <li key={item}>
-                    <a href={`#${item}`} className="text-sm text-muted-foreground hover:text-primary transition-colors">{item}</a>
+                    <a
+                      href={`#${item}`}
+                      className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                      onClick={(e) => scrollToSection(item, e)}
+                    >
+                      {item}
+                    </a>
                   </li>
                 ))}
               </ul>
