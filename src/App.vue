@@ -2,9 +2,9 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useDark } from '@vueuse/core'
 import {
-  ArrowRight, Brain, Database, Shield, Smartphone,
-  MessageSquare, BarChart3, FileText, Activity,
-  Menu, X, CheckCircle, Zap, Globe, Code, Sun, Moon
+  ArrowRight, Code, Shield, Zap, Layers,
+  Activity, ShoppingBag, Sparkles, Scissors, UtensilsCrossed,
+  Menu, X, CheckCircle, Sun, Moon, LifeBuoy, Cloud
 } from 'lucide-vue-next'
 
 const isDark = useDark({
@@ -17,46 +17,45 @@ const toggleDark = () => {
   isDark.value = !isDark.value
 }
 
-const navItems = ['首页', '核心优势', '产品服务', '功能特性', '合作方式', '技术架构', '联系我们']
+const navItems = ['首页', '核心优势', '产品矩阵', '合作方式', '服务流程', '技术架构', '联系我们']
 
 const coreAdvantages = [
-  { title: '权威医疗数据', icon: Database, description: '与国内知名三甲医院深度合作，拥有海量真实皮肤病例数据，覆盖数百种皮肤疾病类型。' },
-  { title: '专业医生标注', icon: Shield, description: '由皮肤科专家团队进行专业标注，确保数据质量和模型训练的准确性。' },
-  { title: 'AI精准识别', icon: Brain, description: '基于深度学习算法，AI识别准确率行业领先，为用户提供可靠的皮肤健康分析。' },
-  { title: '持续迭代优化', icon: Zap, description: '持续积累新数据，不断优化模型，确保AI识别能力与时俱进。' },
+  { title: '全场景解决方案', icon: Layers, description: '覆盖体育、零售、美业、餐饮等多行业成熟小程序矩阵，快速匹配企业业务场景。' },
+  { title: '弹性定制能力', icon: Code, description: '基于标准产品灵活定制，同时支持从0到1的全新系统开发，满足企业专属需求。' },
+  { title: '全流程技术服务', icon: Shield, description: 'UI设计、开发、部署、运维一站式服务，让企业专注核心业务增长。' },
+  { title: '快速交付上线', icon: Zap, description: '成熟技术中台与标准化组件库，显著缩短开发周期，助力快速抢占市场。' },
 ]
 
-const features = [
-  { name: 'AI皮肤助手咨询', icon: MessageSquare, description: '智能对话系统，实时解答用户皮肤相关问题，提供专业建议' },
-  { name: 'AI皮肤检测', icon: Brain, description: '上传皮肤照片，AI快速分析识别，精准判断皮肤状况' },
-  { name: 'AI识别皮肤报告', icon: FileText, description: '生成详细的皮肤分析报告，包含问题诊断、护理建议等' },
-  { name: '皮肤状态监测', icon: Activity, description: '长期追踪用户皮肤变化趋势，建立个人皮肤健康档案' },
-  { name: '数据可视化分析', icon: BarChart3, description: '直观展示皮肤健康数据，帮助用户了解皮肤状态变化' },
-  { name: '智能护肤推荐', icon: Zap, description: '基于AI分析结果，智能推荐适合的护肤方案和产品' },
+const products = [
+  { name: '体育上门小程序', type: '体育', icon: Activity, description: '上门运动陪练预约、教练匹配、场地预约管理一站式解决方案', benefits: ['教练资源智能匹配', '在线预约与排期', '场地资源管理', '会员卡与课程包'] },
+  { name: '商城小程序', type: '商城', icon: ShoppingBag, description: '全渠道电商购物系统，支持多种营销工具与会员体系', benefits: ['多规格商品管理', '拼团/秒杀/优惠券', '会员积分体系', '多渠道支付对接'] },
+  { name: '美容小程序', type: '美容', icon: Sparkles, description: '美容院预约管理、会员储值、耗材库存一体化管理', benefits: ['在线预约与排班', '会员卡储值管理', '耗材库存跟踪', '客户档案管理'] },
+  { name: '美发小程序', type: '美发', icon: Scissors, description: '理发店到店预约、设计师排班与会员管理系统', benefits: ['设计师在线预约', '排班与业绩统计', '会员等级体系', '营销活动配置'] },
+  { name: '餐饮小程序', type: '餐饮', icon: UtensilsCrossed, description: '扫码点餐、外卖配送、会员营销全流程餐饮数字化方案', benefits: ['扫码自助点餐', '外卖配送对接', '会员营销活动', '多门店统一管理'] },
 ]
 
 const cooperationModes = [
-  { name: 'APP开发', type: 'APP', icon: Smartphone, description: '提供完整的皮肤检测APP解决方案，支持iOS和Android双平台', benefits: ['完整功能定制', '独立品牌打造', '专属技术支持', '持续版本迭代'] },
-  { name: 'H5应用', type: 'H5', icon: Globe, description: '轻量级H5解决方案，无需下载即可使用，便于推广传播', benefits: ['快速上线部署', '跨平台兼容', '便于社交分享', '低成本运营'] },
-  { name: '小程序开发', type: '小程序', icon: MessageSquare, description: '微信、支付宝等平台小程序开发，触达海量用户', benefits: ['流量入口便捷', '用户习惯友好', '开发周期短', '推广成本低'] },
-  { name: 'API接入', type: 'API', icon: Code, description: '提供标准化API接口，可快速集成到您现有的系统中', benefits: ['灵活集成', '按量计费', '技术文档完善', '7x24技术支持'] },
+  { name: '标品小程序', icon: Layers, description: '基于5大成熟小程序产品模板，快速搭建部署，支持品牌化定制', benefits: ['1-3个工作日部署上线', '品牌视觉定制', '持续版本更新', '按需增购功能模块'] },
+  { name: '全新定制开发', icon: Code, description: '针对企业专属业务场景，从0到1提供全流程定制化软件开发服务', benefits: ['需求深度调研', 'UI/UX专属设计', '全栈技术实现', '源码交付'] },
+  { name: 'SaaS订阅服务', icon: Cloud, description: '按月/按年订阅使用，无需自建服务器和运维团队，弹性扩容', benefits: ['零运维成本', '弹性资源扩容', '按需付费更省钱', '数据安全保障'] },
+  { name: '技术咨询运维', icon: LifeBuoy, description: '为已上线系统提供长期技术支持、功能迭代与运维保障服务', benefits: ['7x24技术支持', '定期功能迭代', '系统安全巡检', '性能持续优化'] },
 ]
 
-const techStack = ['PyTorch', 'TensorFlow', 'YOLO', 'Transformer', 'CNN', 'ResNet', 'AWS', 'Docker', 'Kubernetes', 'FastAPI']
+const techStack = ['微信小程序', 'uni-app', 'Vue3', 'Node.js', 'Spring Cloud', 'MySQL', 'Redis', 'Docker', 'Kubernetes', '阿里云']
 
 const stats = [
-  { value: '500万+', label: '皮肤数据样本' },
-  { value: '98.6%', label: 'AI识别准确率' },
-  { value: '200+', label: '合作医院' },
-  { value: '50+', label: '皮肤科专家' },
+  { value: '50+', label: '已交付项目' },
+  { value: '5大', label: '行业解决方案' },
+  { value: '98%', label: '客户满意度' },
+  { value: '7x24', label: '技术支持' },
 ]
 
-const featureList = [
-  { title: '智能图像识别', desc: '基于深度学习的图像识别技术，快速准确分析皮肤状况' },
-  { title: '实时AI问答', desc: '24小时在线AI助手，随时解答皮肤健康问题' },
-  { title: '个性化报告', desc: '生成详细的皮肤分析报告，提供针对性护理建议' },
-  { title: '长期健康追踪', desc: '建立个人皮肤档案，持续追踪皮肤状态变化' },
-  { title: '隐私安全保障', desc: '严格的数据加密和隐私保护机制，确保用户信息安全' },
+const processList = [
+  { title: '需求梳理与方案设计', desc: '深入了解业务场景，制定最优技术方案与产品原型' },
+  { title: 'UI/UX专业设计', desc: '打造符合品牌调性的界面设计，提升用户体验' },
+  { title: '敏捷开发与测试', desc: '采用敏捷开发模式，快速迭代，严格测试保证质量' },
+  { title: '上线部署与培训', desc: '协助小程序发布上线，提供操作培训与文档支持' },
+  { title: '持续运维与迭代', desc: '上线后持续技术支持，根据业务发展迭代新功能' },
 ]
 
 const activeSection = ref('首页')
@@ -87,9 +86,9 @@ const handleScroll = () => {
   }
 }
 
-const filteredModes = (type: string) => {
-  if (type === 'all') return cooperationModes
-  return cooperationModes.filter(mode => mode.type === type)
+const filteredProducts = (type: string) => {
+  if (type === 'all') return products
+  return products.filter(product => product.type === type)
 }
 
 onMounted(() => {
@@ -122,7 +121,7 @@ const contactTab = ref('message')
             :enter="{ opacity: 1, x: 0, transition: { duration: 500 } }"
             class="flex items-center"
           >
-            <span class="text-2xl font-bold text-primary">睿肤云图</span>
+            <span class="text-2xl font-bold text-primary">广州智能科技</span>
           </div>
           <ul class="hidden md:flex space-x-8">
             <li
@@ -203,7 +202,7 @@ const contactTab = ref('message')
               :enter="{ opacity: 1, y: 0, transition: { duration: 800 } }"
               class="text-4xl font-extrabold tracking-tight lg:text-5xl"
             >
-              睿肤云图
+              广州智能科技
             </h1>
             <p
               v-motion
@@ -211,7 +210,7 @@ const contactTab = ref('message')
               :enter="{ opacity: 1, y: 0, transition: { duration: 800, delay: 200 } }"
               class="mt-6 text-xl text-muted-foreground"
             >
-              智汇睿肤，数绘云图
+              智造软件，赋能百业
             </p>
             <p
               v-motion
@@ -219,7 +218,7 @@ const contactTab = ref('message')
               :enter="{ opacity: 1, y: 0, transition: { duration: 800, delay: 300 } }"
               class="mt-4 text-base text-muted-foreground max-w-2xl mx-auto"
             >
-              基于国内知名医院皮肤数据与专业医生标注，打造行业领先的AI皮肤检测与分析平台
+              专注SaaS软件开发与个性化软件定制，覆盖体育、零售、美业、餐饮等多行业场景，助力企业高效实现数字化转型
             </p>
             <div
               v-motion
@@ -227,10 +226,16 @@ const contactTab = ref('message')
               :enter="{ opacity: 1, y: 0, transition: { duration: 800, delay: 400 } }"
               class="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
             >
-              <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-10 px-6 rounded-full hover:scale-105 active:scale-95">
+              <button
+                class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-10 px-6 rounded-full hover:scale-105 active:scale-95"
+                @click="scrollToSection('联系我们')"
+              >
                 立即咨询 <ArrowRight class="ml-2 h-4 w-4" />
               </button>
-              <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-10 px-6 rounded-full hover:scale-105 active:scale-95">
+              <button
+                class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-10 px-6 rounded-full hover:scale-105 active:scale-95"
+                @click="scrollToSection('产品矩阵')"
+              >
                 查看产品演示
               </button>
             </div>
@@ -263,7 +268,7 @@ const contactTab = ref('message')
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2 class="text-3xl font-bold tracking-tight text-center mb-4">核心优势</h2>
           <p class="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            依托权威医疗资源与专业技术团队，构建行业领先的AI皮肤分析能力
+            依托成熟产品矩阵与专业技术团队，构建高效的软件定制服务能力
           </p>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div
@@ -284,38 +289,105 @@ const contactTab = ref('message')
         </div>
       </section>
 
-      <!-- Features Section -->
-      <section id="产品服务" class="py-20">
+      <!-- Products Section -->
+      <section id="产品矩阵" class="py-20">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 class="text-3xl font-bold tracking-tight text-center mb-4">产品服务</h2>
+          <h2 class="text-3xl font-bold tracking-tight text-center mb-4">产品矩阵</h2>
           <p class="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            全方位AI皮肤健康管理解决方案，满足用户多样化需求
+            5大成熟小程序产品，覆盖多行业业务场景，均支持在线演示
           </p>
+
+          <!-- Tabs -->
+          <div class="flex justify-center mb-8">
+            <div class="inline-flex flex-wrap items-center justify-center rounded-full bg-muted p-1 text-muted-foreground gap-1">
+              <button
+                v-for="tab in ['all', '体育', '商城', '美容', '美发', '餐饮']"
+                :key="tab"
+                :class="[
+                  'inline-flex items-center justify-center whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+                  activeTab === tab ? 'bg-background text-foreground shadow-sm' : ''
+                ]"
+                @click="activeTab = tab"
+              >
+                {{ tab === 'all' ? '全部' : tab }}
+              </button>
+            </div>
+          </div>
+
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div
-              v-for="(feature, index) in features"
-              :key="feature.name"
+              v-for="(product, index) in filteredProducts(activeTab)"
+              :key="product.name"
+              v-motion
+              :initial="{ opacity: 0, y: 50 }"
+              :visible="{ opacity: 1, y: 0, transition: { duration: 500, delay: index * 100 } }"
+              class="rounded-2xl overflow-hidden border border-border bg-card h-full flex flex-col"
+            >
+              <div class="p-6 flex-1">
+                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                  <component :is="product.icon" class="h-6 w-6 text-primary" />
+                </div>
+                <h3 class="text-lg font-semibold mb-1">{{ product.name }}</h3>
+                <p class="text-xs text-muted-foreground mb-4">{{ product.type }}</p>
+                <p class="text-sm text-muted-foreground mb-4">{{ product.description }}</p>
+                <ul class="space-y-2">
+                  <li v-for="benefit in product.benefits" :key="benefit" class="flex items-center text-sm">
+                    <CheckCircle class="h-4 w-4 text-primary mr-2 flex-shrink-0" />
+                    {{ benefit }}
+                  </li>
+                </ul>
+              </div>
+              <div class="p-6 pt-0">
+                <button
+                  class="w-full inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-10 rounded-full"
+                  @click="scrollToSection('联系我们')"
+                >
+                  预约演示
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cooperation Modes Section -->
+      <section id="合作方式" class="py-20 bg-muted/50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-3xl font-bold tracking-tight text-center mb-4">合作方式</h2>
+          <p class="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+            灵活多样的合作模式，满足不同规模企业的软件需求
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div
+              v-for="(mode, index) in cooperationModes"
+              :key="mode.name"
               v-motion
               :initial="{ opacity: 0, y: 50 }"
               :visible="{ opacity: 1, y: 0, transition: { duration: 500, delay: index * 100 } }"
               class="rounded-2xl overflow-hidden border border-border bg-card h-full p-6"
             >
               <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                <component :is="feature.icon" class="h-6 w-6 text-primary" />
+                <component :is="mode.icon" class="h-6 w-6 text-primary" />
               </div>
-              <h3 class="text-lg font-semibold mb-2">{{ feature.name }}</h3>
-              <p class="text-sm text-muted-foreground">{{ feature.description }}</p>
+              <h3 class="text-lg font-semibold mb-2">{{ mode.name }}</h3>
+              <p class="text-sm text-muted-foreground mb-4">{{ mode.description }}</p>
+              <ul class="space-y-2">
+                <li v-for="benefit in mode.benefits" :key="benefit" class="flex items-center text-sm">
+                  <CheckCircle class="h-4 w-4 text-primary mr-2 flex-shrink-0" />
+                  {{ benefit }}
+                </li>
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- App Features Showcase -->
-      <section id="功能特性" class="py-20 bg-muted/50">
+      <!-- Process Section -->
+      <section id="服务流程" class="py-20">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 class="text-3xl font-bold tracking-tight text-center mb-4">功能特性</h2>
+          <h2 class="text-3xl font-bold tracking-tight text-center mb-4">服务流程</h2>
           <p class="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            采用前沿AI技术，为用户提供专业、便捷的皮肤健康服务
+            标准化交付流程，确保项目高效、透明、可控地推进
           </p>
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div
@@ -324,7 +396,7 @@ const contactTab = ref('message')
               :visible="{ opacity: 1, x: 0, transition: { duration: 500 } }"
               class="space-y-6"
             >
-              <div v-for="item in featureList" :key="item.title" class="flex items-start gap-4">
+              <div v-for="item in processList" :key="item.title" class="flex items-start gap-4">
                 <CheckCircle class="h-6 w-6 text-primary mt-1 flex-shrink-0" />
                 <div>
                   <h3 class="font-semibold text-lg">{{ item.title }}</h3>
@@ -340,68 +412,10 @@ const contactTab = ref('message')
             >
               <div class="bg-gradient-to-br from-primary/20 to-primary/5 rounded-3xl p-8 aspect-square flex items-center justify-center">
                 <div class="text-center">
-                  <Brain class="h-24 w-24 text-primary mx-auto mb-4" />
-                  <p class="text-lg font-semibold">AI驱动的皮肤分析引擎</p>
-                  <p class="text-sm text-muted-foreground mt-2">毫秒级响应，精准识别</p>
+                  <Code class="h-24 w-24 text-primary mx-auto mb-4" />
+                  <p class="text-lg font-semibold">全流程数字化交付能力</p>
+                  <p class="text-sm text-muted-foreground mt-2">标准化 + 定制化，双轨并行</p>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Cooperation Modes Section -->
-      <section id="合作方式" class="py-20">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 class="text-3xl font-bold tracking-tight text-center mb-4">合作方式</h2>
-          <p class="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            灵活多样的合作模式，满足不同业务场景需求
-          </p>
-          
-          <!-- Tabs -->
-          <div class="flex justify-center mb-8">
-            <div class="inline-flex items-center justify-center rounded-full bg-muted p-1 text-muted-foreground">
-              <button
-                v-for="tab in ['all', 'APP', 'H5', '小程序', 'API']"
-                :key="tab"
-                :class="[
-                  'inline-flex items-center justify-center whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
-                  activeTab === tab ? 'bg-background text-foreground shadow-sm' : ''
-                ]"
-                @click="activeTab = tab"
-              >
-                {{ tab === 'all' ? '全部' : tab }}
-              </button>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div
-              v-for="(mode, index) in filteredModes(activeTab)"
-              :key="mode.name"
-              v-motion
-              :initial="{ opacity: 0, y: 50 }"
-              :visible="{ opacity: 1, y: 0, transition: { duration: 500, delay: index * 100 } }"
-              class="rounded-2xl overflow-hidden border border-border bg-card h-full flex flex-col"
-            >
-              <div class="p-6 flex-1">
-                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                  <component :is="mode.icon" class="h-6 w-6 text-primary" />
-                </div>
-                <h3 class="text-lg font-semibold mb-1">{{ mode.name }}</h3>
-                <p class="text-xs text-muted-foreground mb-4">{{ mode.type }}</p>
-                <p class="text-sm text-muted-foreground mb-4">{{ mode.description }}</p>
-                <ul class="space-y-2">
-                  <li v-for="benefit in mode.benefits" :key="benefit" class="flex items-center text-sm">
-                    <CheckCircle class="h-4 w-4 text-primary mr-2 flex-shrink-0" />
-                    {{ benefit }}
-                  </li>
-                </ul>
-              </div>
-              <div class="p-6 pt-0">
-                <button class="w-full inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-10 rounded-full">
-                  了解详情
-                </button>
               </div>
             </div>
           </div>
@@ -413,7 +427,7 @@ const contactTab = ref('message')
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2 class="text-3xl font-bold tracking-tight text-center mb-4">技术架构</h2>
           <p class="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            采用世界前沿技术架构，确保系统稳定性和可扩展性
+            采用成熟稳定的技术架构，确保系统性能、安全性与可扩展性
           </p>
           <div class="flex flex-wrap justify-center gap-6">
             <div
@@ -501,7 +515,7 @@ const contactTab = ref('message')
                         id="cooperation"
                         v-model="formData.cooperation"
                         class="flex min-h-[100px] w-full rounded-xl border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 mt-2"
-                        placeholder="请描述您的合作需求（APP/H5/小程序/API接入）"
+                        placeholder="请描述您的合作需求（标品小程序/定制开发/SaaS订阅/技术运维）"
                       ></textarea>
                     </div>
                     <button
@@ -515,10 +529,10 @@ const contactTab = ref('message')
 
                 <!-- Contact Info -->
                 <div v-else class="space-y-4">
-                  <p><strong>公司：</strong> 睿肤云图科技有限公司</p>
-                  <p><strong>地址：</strong> 中国天津市河北区中山路</p>
-                  <p><strong>商务合作：</strong> 1552614119@qq.com</p>
-                  <p><strong>技术支持：</strong> 1552614119@qq.com</p>
+                  <p><strong>公司：</strong> 广州智能科技有限公司</p>
+                  <p><strong>地址：</strong> 中国广东省广州市</p>
+                  <p><strong>商务合作：</strong> contact@gz-zhineng.com</p>
+                  <p><strong>技术支持：</strong> support@gz-zhineng.com</p>
                   <div>
                     <h4 class="font-semibold mb-2">关注我们</h4>
                     <div class="flex space-x-4">
@@ -545,8 +559,8 @@ const contactTab = ref('message')
       <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-wrap justify-between items-center">
           <div class="w-full md:w-1/3 text-center md:text-left mb-6 md:mb-0">
-            <h3 class="text-2xl font-bold text-primary">睿肤云图</h3>
-            <p class="mt-2 text-sm text-muted-foreground">智汇睿肤，数绘云图</p>
+            <h3 class="text-2xl font-bold text-primary">广州智能科技</h3>
+            <p class="mt-2 text-sm text-muted-foreground">智造软件，赋能百业</p>
           </div>
           <div class="w-full md:w-1/3 text-center mb-6 md:mb-0">
             <h4 class="text-lg font-semibold mb-2">快速链接</h4>
@@ -564,13 +578,13 @@ const contactTab = ref('message')
           </div>
           <div class="w-full md:w-1/3 text-center md:text-right">
             <h4 class="text-lg font-semibold mb-2">联系我们</h4>
-            <p class="text-sm text-muted-foreground">1552614119@qq.com</p>
-            <p class="text-sm text-muted-foreground">中国天津市河北区中山路</p>
+            <p class="text-sm text-muted-foreground">contact@gz-zhineng.com</p>
+            <p class="text-sm text-muted-foreground">中国广东省广州市</p>
           </div>
         </div>
         <div class="mt-8 pt-8 border-t border-border text-center">
           <p class="text-sm text-muted-foreground">
-            &copy; 2024 睿肤云图科技有限公司 版权所有
+            &copy; 2024 广州智能科技有限公司 版权所有
           </p>
         </div>
       </div>
